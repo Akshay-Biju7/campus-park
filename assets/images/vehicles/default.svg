@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="100%" height="100%">
+  <defs>
+    <linearGradient id="defBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#181922" />
+      <stop offset="100%" stop-color="#0f1015" />
+    </linearGradient>
+    <linearGradient id="defAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="250" rx="16" fill="url(#defBg)" />
+  <circle cx="200" cy="120" r="45" fill="url(#defAccent)" opacity="0.15" />
+  
+  <ellipse cx="200" cy="195" rx="120" ry="10" fill="#000000" opacity="0.4" />
+  
+  <!-- Icon Silhouette -->
+  <g transform="translate(160, 80) scale(1.6)" fill="#c084fc">
+    <path d="M8 1a2 2 0 0 0-2 2v2H5V3a3 3 0 0 1 6 0v2h-1V3a2 2 0 0 0-2-2M2.5 5a1.5 1.5 0 0 0-1.5 1.5v3A1.5 1.5 0 0 0 2.5 11h.562c.262.29.594.522.968.665v1.835a1.5 1.5 0 0 0 1.5 1.5h1a1.5 1.5 0 0 0 1.5-1.5v-1.835c.374-.143.706-.375.968-.665H9.5A1.5 1.5 0 0 0 11 9.5v-3A1.5 1.5 0 0 0 9.5 5z"/>
+  </g>
+  
+  <text x="200" y="195" text-anchor="middle" fill="#9496a8" font-family="sans-serif" font-size="12" font-weight="600" letter-spacing="1">CAMPUS VEHICLE</text>
+</svg>
+

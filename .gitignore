@@ -1,0 +1,16 @@
+# Environment / system files
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+# IDE / Editor folders
+.vscode/
+.idea/
+
+# Windows
+desktop.ini
+
+# Uploaded media (keep folder structure)
+assets/uploads/vehicles/*
+!assets/uploads/vehicles/.gitkeep
