@@ -14,3 +14,9 @@ desktop.ini
 # Uploaded media (keep folder structure)
 assets/uploads/vehicles/*
 !assets/uploads/vehicles/.gitkeep
+
+# Desktop application build artifacts
+desktop/node_modules/
+desktop/dist/
+*.exe
+

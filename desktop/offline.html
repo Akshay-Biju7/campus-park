@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusPark – Connecting to Server</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #0d0e13;
+            --bg-card: #16171d;
+            --accent-purple: #a855f7;
+            --accent-magenta: #d946ef;
+            --accent-pink: #ec4899;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-medium: rgba(255, 255, 255, 0.16);
+            --radius-pill: 9999px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            user-select: none;
+            overflow: hidden;
+        }
+
+        .offline-container {
+            width: 100%;
+            max-width: 520px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-medium);
+            border-radius: 28px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offline-container::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 20%;
+            right: 20%;
+            height: 90px;
+            background: radial-gradient(ellipse at center, rgba(217, 70, 239, 0.45) 0%, rgba(13, 14, 19, 0) 75%);
+            filter: blur(25px);
+            pointer-events: none;
+        }
+
+        .brand-badge {
+            width: 68px;
+            height: 68px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #1f212a 0%, #121319 100%);
+            border: 1px solid rgba(217, 70, 239, 0.4);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 25px rgba(217, 70, 239, 0.25);
+            animation: pulse 2.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 25px rgba(217, 70, 239, 0.25);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 35px rgba(217, 70, 239, 0.5);
+            }
+        }
+
+        .brand-p {
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-magenta), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 1.45rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        p.subtitle {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.75rem;
+            line-height: 1.5;
+        }
+
+        .instruction-box {
+            background: #0f1016;
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.25rem;
+            text-align: left;
+            margin-bottom: 1.75rem;
+        }
+
+        .instruction-box h4 {
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .step-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.65rem;
+            font-size: 0.85rem;
+            color: #e2e8f0;
+        }
+
+        .step-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-num {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: rgba(217, 70, 239, 0.15);
+            color: var(--accent-magenta);
+            border: 1px solid rgba(217, 70, 239, 0.3);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .btn-retry {
+            background: linear-gradient(135deg, #d946ef 0%, #a855f7 100%);
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: var(--radius-pill);
+            padding: 0.75rem 2rem;
+            border: none;
+            box-shadow: 0 4px 20px rgba(217, 70, 239, 0.4);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            width: 100%;
+        }
+
+        .btn-retry:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 28px rgba(217, 70, 239, 0.6);
+        }
+
+        .status-footer {
+            margin-top: 1.25rem;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .countdown {
+            color: var(--accent-magenta);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<div class="offline-container">
+    <div class="brand-badge">
+        <span class="brand-p">P</span>
+    </div>
+
+    <h2>Connecting to CampusPark Server</h2>
+    <p class="subtitle">The desktop app needs your local web server & database to be active.</p>
+
+    <div class="instruction-box">
+        <h4>How to Start:</h4>
+        <div class="step-row">
+            <span class="step-num">1</span>
+            <span>Open <strong>XAMPP Control Panel</strong> on your computer</span>
+        </div>
+        <div class="step-row">
+            <span class="step-num">2</span>
+            <span>Click <strong>Start</strong> next to <strong>Apache</strong> and <strong>MySQL</strong></span>
+        </div>
+        <div class="step-row">
+            <span class="step-num">3</span>
+            <span>This app will connect automatically once online</span>
+        </div>
+    </div>
+
+    <button type="button" class="btn-retry" id="retryBtn" onclick="manualRetry()">
+        Retry Connection Now
+    </button>
+
+    <div class="status-footer">
+        Auto-retrying in <span class="countdown" id="countdownSec">3</span>s...
+    </div>
+</div>
+
+<script>
+    let countdown = 3;
+    const countdownEl = document.getElementById('countdownSec');
+    const retryBtn = document.getElementById('retryBtn');
+
+    setInterval(() => {
+        countdown--;
+        if (countdown <= 0) {
+            countdown = 3;
+            checkConnection();
+        }
+        countdownEl.innerText = countdown;
+    }, 1000);
+
+    function checkConnection() {
+        if (window.electronAPI && window.electronAPI.retry) {
+            window.electronAPI.retry();
+        } else {
+            fetch('http://localhost/parking/index.php', { method: 'HEAD', mode: 'no-cors' })
+                .then(() => {
+                    window.location.href = 'http://localhost/parking/index.php';
+                })
+                .catch(() => {});
+        }
+    }
+
+    function manualRetry() {
+        retryBtn.innerText = 'Checking...';
+        retryBtn.disabled = true;
+        checkConnection();
+        setTimeout(() => {
+            retryBtn.innerText = 'Retry Connection Now';
+            retryBtn.disabled = false;
+        }, 1500);
+    }
+</script>
+
+</body>
+</html>
+

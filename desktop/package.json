@@ -1,0 +1,44 @@
+{
+  "name": "campus-park",
+  "version": "1.0.0",
+  "description": "CampusPark – College Parking & Vehicle Mobility Management System",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --win portable"
+  },
+  "build": {
+    "appId": "com.campuspark.app",
+    "productName": "CampusPark",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "icon": "icon.ico"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "offline.html",
+      "icon.ico",
+      "icon.png"
+    ]
+  },
+  "keywords": [
+    "parking",
+    "college",
+    "campus",
+    "desktop",
+    "electron"
+  ],
+  "author": "Akshay Biju",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^45.1.0",
+    "electron-builder": "^26.18.0"
+  }
+}
